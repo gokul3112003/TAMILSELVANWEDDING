@@ -1,0 +1,147 @@
+
+import React, { useState } from 'react';
+import ParallaxTilt from 'react-parallax-tilt';
+import { config } from '../config';
+import { CalendarIcon, ClockIcon, MapPinIcon } from './icons';
+
+const Hero: React.FC = () => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const handleCardClick = () => {
+    setIsFlipped(!isFlipped);
+  };
+
+  const getMapLink = (venue: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue)}`;
+
+  return (
+    <section className="flex flex-col items-center text-center py-10">
+      <p className="font-serif text-gold-700 text-lg mb-2">We're Getting Married!</p>
+      <h1 className="font-serif text-5xl md:text-7xl text-navy-900 font-bold">
+        {config.groomName} &amp; {config.brideName}
+      </h1>
+      <p className="mt-4 text-lg text-navy-700 max-w-2xl">
+        With joyful hearts, we invite you to celebrate our wedding. Your presence would be the greatest gift as we begin our new life together.
+      </p>
+
+      <div className="mt-12 w-full max-w-lg" style={{ perspective: '1500px' }}>
+        <ParallaxTilt
+          tiltMaxAngleX={5}
+          tiltMaxAngleY={5}
+          glareEnable={true}
+          glareMaxOpacity={0.1}
+          glarePosition="all"
+          scale={1.05}
+          transitionSpeed={2000}
+        >
+          <div
+            className="relative w-full h-[650px] cursor-pointer rounded-lg shadow-2xl transition-transform duration-700"
+            style={{ transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
+            onClick={handleCardClick}
+          >
+            {/* Front of the Card */}
+            <div className="absolute inset-0 bg-white rounded-lg p-8 flex flex-col items-center justify-center backface-hidden" style={{ backfaceVisibility: 'hidden' }}>
+                <div className="absolute inset-0 rounded-lg border-8 border-gold-300 opacity-50"></div>
+                <div className="relative text-center">
+                    <p className="font-serif text-gold-700 text-2xl">Together with our families</p>
+                    <h2 className="font-serif text-6xl my-6 text-navy-900">
+                        {config.groomName}
+                        <span className="block text-3xl font-sans font-light my-2">&amp;</span>
+                        {config.brideName}
+                    </h2>
+                    <p className="text-navy-700 text-lg">{config.date}</p>
+                    <p className="text-navy-700 mt-1">{config.time}</p>
+                    <p className="text-navy-700 mt-4 font-bold">{config.venueName}</p>
+                    <div className="mt-8 text-sm uppercase tracking-widest text-gold-700">Click to see details</div>
+                </div>
+            </div>
+
+            {/* Back of the Card */}
+            <div className="absolute inset-0 bg-gold-100 rounded-lg p-8 flex flex-col justify-center backface-hidden" style={{ transform: 'rotateY(180deg)', backfaceVisibility: 'hidden' }}>
+              <div className="text-left text-navy-800">
+                  <h3 className="font-serif text-3xl text-navy-900 border-b border-gold-300 pb-2 mb-4">Event Details</h3>
+                  <div className="space-y-5">
+                    {/* Reception 1 */}
+                    <div>
+                      <h4 className="font-bold font-serif text-xl text-navy-900">Reception 1</h4>
+                      <div className="flex items-center mt-1 space-x-3">
+                        <CalendarIcon className="w-5 h-5 text-gold-700" />
+                        <span className="text-sm sm:text-base">{config.reception1Date}</span>
+                      </div>
+                      <div className="flex items-center mt-1 space-x-3">
+                        <ClockIcon className="w-5 h-5 text-gold-700" />
+                        <span className="text-sm sm:text-base">{config.reception1Time}</span>
+                      </div>
+                      <div className="flex items-start mt-1 space-x-3">
+                        <MapPinIcon className="w-5 h-5 text-gold-700 flex-shrink-0 mt-1" />
+                        <a 
+                          href={getMapLink(config.reception1Venue)} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-sm sm:text-base text-navy-800 underline decoration-gold-700 underline-offset-4 hover:text-gold-700 transition-colors font-medium"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {config.reception1Venue}
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Wedding */}
+                    <div>
+                      <h4 className="font-bold font-serif text-xl text-navy-900">Wedding</h4>
+                      <div className="flex items-center mt-1 space-x-3">
+                        <CalendarIcon className="w-5 h-5 text-gold-700" />
+                        <span className="text-sm sm:text-base">{config.date}</span>
+                      </div>
+                      <div className="flex items-center mt-1 space-x-3">
+                        <ClockIcon className="w-5 h-5 text-gold-700" />
+                        <span className="text-sm sm:text-base">{config.time}</span>
+                      </div>
+                      <div className="flex items-start mt-1 space-x-3">
+                        <MapPinIcon className="w-5 h-5 text-gold-700 flex-shrink-0 mt-1" />
+                        <a 
+                          href={getMapLink(`${config.venueName}, ${config.venueAddress}, ${config.venueCity}`)} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-sm sm:text-base text-navy-800 underline decoration-gold-700 underline-offset-4 hover:text-gold-700 transition-colors font-medium"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {config.venueName}
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Reception 2 */}
+                    <div>
+                      <h4 className="font-bold font-serif text-xl text-navy-900">Reception 2</h4>
+                      <div className="flex items-center mt-1 space-x-3">
+                        <CalendarIcon className="w-5 h-5 text-gold-700" />
+                        <span className="text-sm sm:text-base">{config.receptionDate}</span>
+                      </div>
+                      <div className="flex items-center mt-1 space-x-3">
+                        <ClockIcon className="w-5 h-5 text-gold-700" />
+                        <span className="text-sm sm:text-base">{config.receptionTime}</span>
+                      </div>
+                      <div className="flex items-start mt-1 space-x-3">
+                        <MapPinIcon className="w-5 h-5 text-gold-700 flex-shrink-0 mt-1" />
+                        <a 
+                          href={getMapLink(config.receptionVenue)} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-sm sm:text-base text-navy-800 underline decoration-gold-700 underline-offset-4 hover:text-gold-700 transition-colors font-medium"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {config.receptionVenue}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </ParallaxTilt>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
