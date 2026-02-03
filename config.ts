@@ -20,42 +20,41 @@ export const config = {
   venueCity: "Tirupattur, Tamil Nadu",
   
   // Map Locations for the "Wedding Locations" section
-  // Note: We are using a free map (Leaflet/OSM), so no API Key is needed.
   mapLocations: [
     {
       name: "Usha Saravana Mahal (Venue)",
       description: "The Wedding Venue",
       lat: 12.2572586,
       lng: 78.6145689,
-      type: "venue" // Heart Symbol
+      type: "venue"
     },
     {
       name: "Groom's Residence",
       description: "RAJASEKAR HOME",
       lat: 12.252558,
       lng: 78.604129,
-      type: "home" // House Symbol
+      type: "home"
     },
     {
       name: "Singarapettai Bus Stand",
       description: "Transport Hub",
       lat: 12.2542161,
       lng: 78.6179069,
-      type: "transport" // Bus Emoji
+      type: "transport"
     },
     {
       name: "Mariyamman Temple",
       description: "Where everything starts",
       lat: 12.254161,
       lng: 78.6171169,
-      type: "temple" // Om/Temple Symbol
+      type: "temple"
     },
     {
       name: "Reception 2 (Sathiyam Mahal)",
       description: "Sathiyam Mahal, Erode",
       lat: 11.3410,
       lng: 77.7172,
-      type: "reception" // Purple Heart Symbol
+      type: "reception"
     }
   ],
 
@@ -72,7 +71,7 @@ export const config = {
   // Link for guests to upload photos
   googleDriveUploadUrl: "https://drive.google.com/drive/folders/1drvothbMrm8RujMARwxZIuUKkiGvovOW?usp=sharing",
 
-  // Link for the YouTube highlights video
+  // Link for the YouTube highlights video (Optional)
   youtubeHighlightsUrl: "https://www.youtube.com/embed/RZcJVIcPqcg",
 
   // Contact details for queries
@@ -81,16 +80,26 @@ export const config = {
   contactEmail: "gokulrajasekar324@gmail.com",
   contactWhatsAppUrl: "https://wa.me/qr/VWAB4ECMSH32H1",
 
-  // Gallery Photos
+  // Gallery Photos (Main Guest Gallery)
+  // Cleaned up list to remove repeated images.
   galleryPhotoUrls: [
-    'https://picsum.photos/id/10/800/1200',
-    'https://picsum.photos/id/20/800/600',
-    'https://picsum.photos/id/30/1200/800',
-    'https://picsum.photos/id/45/800/1000',
-    'https://picsum.photos/id/55/800/600',
-    'https://picsum.photos/id/65/1000/800',
-    'https://picsum.photos/id/75/800/1200',
-    'https://picsum.photos/id/85/800/600',
-    'https://picsum.photos/id/95/1200/800',
+    'https://lh3.googleusercontent.com/d/1E1ftJVOrVlmiS0x3i-e-ANPyX5yuJGqX', // Temple steps
+    'https://lh3.googleusercontent.com/d/1ysTbLp5o6dZG0xD_eGQUQBxF3BJVU7xg', // Beach sitting
+    'https://lh3.googleusercontent.com/d/16kr8lMp0X-PhjsduOpVGaDqKCoX_RWUW', // Beach standing
+    'https://lh3.googleusercontent.com/d/1aXO2_mfQwdnDreDRPC_vk6aQsv3IRLQG', // Blue dress (Only once)
+    'https://lh3.googleusercontent.com/d/1lFz41ZVuapujASR9QcN6OtuLLma7lk-N', // Red shirt pillar
+    'https://lh3.googleusercontent.com/d/1X6zWcMlxBIKwuLpOTbqWeCLVD7Yz_Uaz', // Garden
+    'https://lh3.googleusercontent.com/d/1iIIqE5MBcK4vXxPhTQcGfyMISsTR33uM', // Extra 1
+    'https://lh3.googleusercontent.com/d/17QnCDVpD-yFC0AJUZqdlSAlQaibVlOyT', // Extra 2
+    'https://lh3.googleusercontent.com/d/1pgIGwU8GJiQgr8fxqrYg72qSBBMbgZlE', // Extra 3
+  ],
+
+  // Fix: Added highlightPhotoUrls property to support the Highlights component and resolve TypeScript errors
+  highlightPhotoUrls: [
+    'https://lh3.googleusercontent.com/d/1E1ftJVOrVlmiS0x3i-e-ANPyX5yuJGqX',
+    'https://lh3.googleusercontent.com/d/1ysTbLp5o6dZG0xD_eGQUQBxF3BJVU7xg',
+    'https://lh3.googleusercontent.com/d/16kr8lMp0X-PhjsduOpVGaDqKCoX_RWUW',
+    'https://lh3.googleusercontent.com/d/1aXO2_mfQwdnDreDRPC_vk6aQsv3IRLQG',
+    'https://lh3.googleusercontent.com/d/1lFz41ZVuapujASR9QcN6OtuLLma7lk-N',
   ],
 };

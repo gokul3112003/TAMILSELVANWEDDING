@@ -2,13 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { config } from '../config';
 
-// =================================================================
-// NOTE FOR DEVELOPER:
-// This gallery is populated from the `galleryPhotoUrls` array in `config.ts`.
-// To add your own photos, please follow the instructions in that file
-// to get direct image links from your Google Photos album.
-// =================================================================
-
 const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -25,7 +18,6 @@ const Gallery: React.FC = () => {
         (entries) => {
           if (entries[0].isIntersecting) {
             if (prefersReducedMotion) {
-              // Accessible, simple fade-in animation for users who prefer reduced motion
               gsap.from(".gallery-item", {
                 duration: 1.2,
                 autoAlpha: 0,
@@ -33,7 +25,6 @@ const Gallery: React.FC = () => {
                 ease: "power2.out",
               });
             } else {
-              // Enhanced 3D animation with a playful entrance
               gsap.from(".gallery-item", {
                 duration: 1.5,
                 scale: 0.7,
@@ -48,7 +39,6 @@ const Gallery: React.FC = () => {
                 ease: "power4.out",
               });
               
-              // Animate the bloom effect on top
               gsap.fromTo(".bloom-effect", 
                 { scale: 0.3, autoAlpha: 0.8 },
                 {
@@ -64,7 +54,6 @@ const Gallery: React.FC = () => {
                 }
               );
             }
-            // Once animated, we don't need to watch it anymore
             observer.disconnect();
           }
         },
@@ -82,7 +71,6 @@ const Gallery: React.FC = () => {
       }
     }, galleryRef);
 
-    // Cleanup function that runs when component unmounts
     return () => ctx.revert();
   }, []);
 
@@ -134,7 +122,6 @@ const Gallery: React.FC = () => {
         ))}
       </div>
       
-      {/* Lightbox Modal */}
       {selectedImage && (
         <div 
           className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
@@ -144,7 +131,7 @@ const Gallery: React.FC = () => {
             src={selectedImage} 
             alt="Full size view" 
             className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on the image
+            onClick={(e) => e.stopPropagation()}
           />
            <button 
              onClick={closeLightbox}

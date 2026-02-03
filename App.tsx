@@ -1,11 +1,9 @@
-
 import React from 'react';
 import Hero from './components/Hero';
 import Venue from './components/Venue';
 import LocationsMap from './components/LocationsMap';
 import PhotoUpload from './components/PhotoUpload';
 import Gallery from './components/Gallery';
-import Highlights from './components/Highlights';
 import Footer from './components/Footer';
 
 // A decorative divider component to separate sections visually
@@ -27,8 +25,6 @@ const App: React.FC = () => {
         <PhotoUpload />
         <SectionDivider />
         <Gallery />
-        <SectionDivider />
-        <Highlights />
       </main>
       <Footer />
     </div>

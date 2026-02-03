@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import ParallaxTilt from 'react-parallax-tilt';
 import { config } from '../config';
@@ -6,6 +5,7 @@ import { CalendarIcon, ClockIcon, MapPinIcon } from './icons';
 
 const Hero: React.FC = () => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [animationsEnabled, setAnimationsEnabled] = useState(true);
 
   const handleCardClick = () => {
     setIsFlipped(!isFlipped);
@@ -14,8 +14,24 @@ const Hero: React.FC = () => {
   const getMapLink = (venue: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue)}`;
 
   return (
-    <section className="flex flex-col items-center text-center py-10">
-      <p className="font-serif text-gold-700 text-lg mb-2">We're Getting Married!</p>
+    <section className="flex flex-col items-center text-center py-10 relative">
+      {/* 3D Animation Toggle */}
+      <div className="absolute top-0 right-0 flex items-center space-x-2 bg-white/50 backdrop-blur-sm p-2 rounded-full border border-gold-300 shadow-sm">
+        <span className="text-xs font-bold text-navy-800 uppercase tracking-tighter">3D Effects</span>
+        <button
+          onClick={() => setAnimationsEnabled(!animationsEnabled)}
+          className={`relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${animationsEnabled ? 'bg-gold-500' : 'bg-gray-200'}`}
+          role="switch"
+          aria-checked={animationsEnabled}
+        >
+          <span
+            aria-hidden="true"
+            className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${animationsEnabled ? 'translate-x-5' : 'translate-x-0'}`}
+          />
+        </button>
+      </div>
+
+      <p className="font-serif text-gold-700 text-lg mb-2 mt-8 md:mt-0">We're Getting Married!</p>
       <h1 className="font-serif text-5xl md:text-7xl text-navy-900 font-bold">
         {config.groomName} &amp; {config.brideName}
       </h1>
@@ -25,12 +41,12 @@ const Hero: React.FC = () => {
 
       <div className="mt-12 w-full max-w-lg" style={{ perspective: '1500px' }}>
         <ParallaxTilt
-          tiltMaxAngleX={5}
-          tiltMaxAngleY={5}
-          glareEnable={true}
+          tiltMaxAngleX={animationsEnabled ? 5 : 0}
+          tiltMaxAngleY={animationsEnabled ? 5 : 0}
+          glareEnable={animationsEnabled}
           glareMaxOpacity={0.1}
           glarePosition="all"
-          scale={1.05}
+          scale={animationsEnabled ? 1.05 : 1}
           transitionSpeed={2000}
         >
           <div

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { config } from '../config';
@@ -77,11 +76,6 @@ const Venue: React.FC = () => {
         <p>{config.venueAddress}, {config.venueCity}</p>
       </div>
       
-      {/* 
-        The map is now displayed in the standard interactive map section below.
-        Keeping this section focused on the specific Venue details and call to action. 
-      */}
-
       <a
         href={directionsUrl}
         target="_blank"

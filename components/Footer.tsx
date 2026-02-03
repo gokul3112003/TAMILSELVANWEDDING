@@ -1,11 +1,8 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { config } from '../config';
 import { WhatsAppIcon } from './icons';
 
 const Footer: React.FC = () => {
-  // Parse the wedding date from the config file. We'll use the start time.
   const weddingDateTimeString = `${config.date} ${config.time.split(' to ')[0]}`;
   const targetDate = new Date(weddingDateTimeString);
 
@@ -27,18 +24,15 @@ const Footer: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
-    // Set up a timer to update the countdown every second.
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
-    // Clean up the timer when the component unmounts.
     return () => clearInterval(timer);
   }, []);
 
   const timerComponents = Object.keys(timeLeft).map(interval => {
     const value = timeLeft[interval];
-    // Don't render if value is not a number (e.g., when time is up)
     if (isNaN(value)) return null;
 
     return (
@@ -65,7 +59,6 @@ const Footer: React.FC = () => {
         <p className="font-serif text-2xl text-gold-700 animate-pulse">The big day is here!</p>
       )}
 
-      {/* Contact Section */}
       <div className="mt-12 bg-white/30 py-6 px-4 rounded-lg inline-block mx-auto max-w-md">
         <p className="font-serif text-xl text-navy-900 mb-2 font-bold border-b border-gold-300 pb-2 inline-block">For Queries Contact</p>
         <div className="mt-2 text-navy-800">
@@ -81,7 +74,6 @@ const Footer: React.FC = () => {
              </a>
            </p>
 
-           {/* WhatsApp Section */}
            <div className="mt-6 pt-6 border-t border-gold-300/30 flex flex-col items-center">
              <a 
                href={config.contactWhatsAppUrl} 

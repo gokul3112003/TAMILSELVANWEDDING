@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { config } from '../config';
 import { CameraIcon } from './icons';
@@ -6,7 +5,6 @@ import { CameraIcon } from './icons';
 const QrCode: React.FC<{ url: string }> = ({ url }) => {
   // Use a free public API to generate the QR code image dynamically.
   // This ensures the QR code always matches the URL in the config file.
-  // Colors are customized to match the website's theme for a cohesive look.
   const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(
     url
   )}&size=200x200&bgcolor=ffffff&color=0D133C&margin=10`;
